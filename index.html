@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba API Becas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f5;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px 5px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        #salida {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            min-height: 100px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pruebas de API Node.js + MySQL</h1>
+
+    <button class="btn" onclick="probarAPI()">Probar API</button>
+    <button class="btn" onclick="probarDB()">Probar Conexión DB</button>
+    <button class="btn" onclick="insertTest()">Insert de Prueba</button>
+
+    <div id="salida">Aquí aparecerán las respuestas...</div>
+
+    <script>
+        const API_URL = "http://localhost:3000";
+
+        function mostrar(data) {
+            document.getElementById("salida").textContent =
+                JSON.stringify(data, null, 2);
+        }
+
+        async function probarAPI() {
+            try {
+                const r = await fetch(`${API_URL}/test`);
+                mostrar(await r.json());
+            } catch (err) {
+                mostrar({ error: err.message });
+            }
+        }
+
+        async function probarDB() {
+            try {
+                const r = await fetch(`${API_URL}/db`);
+                mostrar(await r.json());
+            } catch (err) {
+                mostrar({ error: err.message });
+            }
+        }
+
+        async function insertTest() {
+            try {
+                const r = await fetch(`${API_URL}/insert-test`, { method: "GET" });
+                mostrar(await r.json());
+            } catch (err) {
+                mostrar({ error: err.message });
+            }
+        }
+    </script>
+
+</body>
+</html>
