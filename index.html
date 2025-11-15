@@ -39,7 +39,7 @@
 </head>
 <body>
 
-    <h1>Pruebas de API Node.js + MySQL</h1>
+    <h1>Pruebas de API Node.js + MySQL (Render)</h1>
 
     <button class="btn" onclick="probarAPI()">Probar API</button>
     <button class="btn" onclick="probarDB()">Probar Conexión DB</button>
@@ -48,7 +48,8 @@
     <div id="salida">Aquí aparecerán las respuestas...</div>
 
     <script>
-        const API_URL = "http://localhost:3000";
+        // 🔥 URL de tu API en Render
+        const API_URL = "https://api-node-plesk-1.onrender.com";
 
         function mostrar(data) {
             document.getElementById("salida").textContent =
